@@ -34,6 +34,7 @@ var AppWindow = function(startUrl) {
   this.win_ = null;
   this.bounds_ = { width: -1, height: -1 };
   this.webview_ = null;
+  this.permissionrequests = {};
 
   app.getSettings_(this.createWindow_.bind(this));
 };
@@ -57,7 +58,12 @@ AppWindow.prototype.createWindow_ = function(settings) {
 
 // Resize the window's webview to the window's size and load the start URL.
 AppWindow.prototype.onLoad_ = function() {
+  var self = this;
   this.webview_ = this.win_.contentWindow.document.getElementById('webview');
+  this.webview_.addEventListener('permissionrequest', function(e) {
+      e.request.allow();
+  });
+
   this.onBoundsChanged_();
   this.loadPage(this.startUrl_);
 }
@@ -80,7 +86,7 @@ AppWindow.prototype.loadPage = function(url) {
   this.webview_.src = url;
 };
 
-// Create a new app window and load the requested Wikipedia article.
+// Create a new app window and load WhatsApp Web.
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
   var url = "https://web.whatsapp.com/";
   
@@ -88,5 +94,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
     url = launchData.url;     
   } 
   
-  new AppWindow(url);
+  var appWindow = new AppWindow(url);
+
+  var webview = appWindow.webview_;  
 });

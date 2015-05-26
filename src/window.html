@@ -3,13 +3,13 @@
 <head>
   <title>WhatsApp</title>
   <style>
-  	* {
+  	body {
   		margin:0;
   		padding:0;
     }
   </style>
 </head>
 <body>
-  <webview id='webview'></webview>
+  <webview id='webview' partition="persist:whatsapp" allowtransparency="on"></webview>
 </body>
 </html>
