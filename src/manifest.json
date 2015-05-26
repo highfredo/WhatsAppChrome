@@ -1,0 +1,32 @@
+{
+  "name": "WhatsChrome",
+  "version": "1",
+  "manifest_version": 2,
+  "description": "WhatsApp en una App de Chrome",  
+  "minimum_chrome_version": "31.0.1650.4",
+
+  "icons": {
+    "128": "whatsapp-logo-128.png"
+  },
+  "app": {
+    "background": {
+      "scripts": [
+        "background.js"
+      ]
+    }
+  },
+
+  "permissions": [
+    "webview",
+    "storage"
+  ],
+
+  "url_handlers": {
+    "web_whatsapp": {
+      "title": "Web WhatsApp",
+      "matches": [
+        "*://web.whatsapp.com/*"
+      ]
+    }
+  }
+}
