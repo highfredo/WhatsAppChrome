@@ -1,6 +1,6 @@
 {
   "name": "WhatsChrome",
-  "version": "1",
+  "version": "0.1",
   "manifest_version": 2,
   "description": "WhatsApp en una App de Chrome",  
   "minimum_chrome_version": "31.0.1650.4",
